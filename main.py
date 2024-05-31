@@ -1,5 +1,5 @@
 import os
-from PrimeCalculator import PrimeCalculator
+from classes.PrimeCalculator import PrimeCalculator
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (
     Application,
@@ -9,6 +9,7 @@ from telegram.ext import (
     ContextTypes,
 )
 from dotenv import load_dotenv
+from classes.PrimeBot import PrimeBot
 
 
 # load environment variables
@@ -17,24 +18,6 @@ load_dotenv()
 # get environment variables
 TOKEN = os.getenv("TOKEN", "")
 USERNAME = os.getenv("@gf_prime_bot", "")
-
-
-class PrimeBot:
-
-    def __init__(self) -> None:
-        self.investment: float = 0
-        self.input_investment: bool = False
-
-    def validate_investment(self, investment: str) -> bool:
-        processed: float = 0
-
-        try:
-            processed = float(investment)
-        except ValueError:
-            return False
-
-        return processed > 0
-
 
 bot = PrimeBot()
 
